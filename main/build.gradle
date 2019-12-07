@@ -25,7 +25,8 @@ android {
 
   buildTypes {
     release {
-      minifyEnabled false
+      // Enables code shrinking, obfuscation, and optimization for only project's release build type.
+      minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
