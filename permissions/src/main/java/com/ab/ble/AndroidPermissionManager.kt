@@ -22,4 +22,5 @@ class AndroidPermissionManager  @Inject constructor(context: Application) : Perm
   override suspend fun geStoragePermission(): AppPermission {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
+
 }

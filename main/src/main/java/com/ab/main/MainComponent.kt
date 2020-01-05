@@ -26,8 +26,8 @@ interface MainComponent {
     fun create(
       dependencies: MainDependencies,
       domainComponent: DomainComponent,
-      @BindsInstance
-      permissionManager: PermissionManager
+      @BindsInstance permissionManager: PermissionManager,
+      @BindsInstance connectionManager: ConnectionManager
     ): MainComponent
   }
 }
@@ -49,6 +49,7 @@ fun ComponentHolder.mainComponent(): MainComponent = getOrCreate {
     .create(
       mainDependencies(),
       domainComponent(),
-      PermissionManager()
+      PermissionManager(),
+      ConnectionManager()
     )
 }

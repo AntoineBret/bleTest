@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ab.kotlinutils.ComponentHolder
 import com.ab.utils.viewModel
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -14,8 +15,8 @@ class MainActivity : AppCompatActivity() {
   @Inject
   lateinit var viewModelProvider: Provider<HomeViewModel>
 
-//  @Inject
-//  lateinit var permissionManager: PermissionManager
+  @Inject
+  lateinit var permissionManager: PermissionManager
 
   @Inject
   lateinit var mainNavigator: MainNavigator
@@ -27,5 +28,16 @@ class MainActivity : AppCompatActivity() {
 
     setContentView(R.layout.activity_main)
 
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
+    }
+    //Check permission when app launch
+    permissionManager.checkPermissions(this)
+  }
+
+  override fun onRestart() {
+    super.onRestart()
+    //Check permission every time app restart to avoid manual deactivation of authorizations by the user
+    permissionManager.checkPermissions(this)
   }
 }
