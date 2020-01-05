@@ -61,6 +61,7 @@ dependencies {
   implementation 'com.jakewharton.timber:timber:4.7.1'
 
   implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+  implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.6'
 
   testImplementation 'junit:junit:4.12'
 }

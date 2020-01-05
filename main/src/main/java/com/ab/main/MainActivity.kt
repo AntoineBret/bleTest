@@ -19,6 +19,9 @@ class MainActivity : AppCompatActivity() {
   lateinit var permissionManager: PermissionManager
 
   @Inject
+  lateinit var connectionManager: ConnectionManager
+
+  @Inject
   lateinit var mainNavigator: MainNavigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +36,13 @@ class MainActivity : AppCompatActivity() {
     }
     //Check permission when app launch
     permissionManager.checkPermissions(this)
+    connectionManager.observeInternetConnectivity(this)
   }
 
   override fun onRestart() {
     super.onRestart()
     //Check permission every time app restart to avoid manual deactivation of authorizations by the user
     permissionManager.checkPermissions(this)
+    connectionManager.observeInternetConnectivity(this)
   }
 }

@@ -31,7 +31,6 @@ class PermissionManager {
    */
   fun checkPermissions(activity: Activity) {
     permissionsList.clear()
-
     if (!isLocationPermissionGranted(activity)) {
       permissionsList.add(ACCESS_COARSE_LOCATION)
     }
@@ -58,7 +57,7 @@ class PermissionManager {
       rxPermissions.request(*permissions)
         .subscribe { granted ->
           if (!granted) {
-            showDialog(activity)
+            showRetryDialog(activity)
           }
         }
     } else {
@@ -114,7 +113,7 @@ class PermissionManager {
   /**
    * Help the user understand why this app needs these permissions
    */
-  private fun showDialog(activity: Activity) {
+  private fun showRetryDialog(activity: Activity) {
     AlertDialog.Builder(activity)
       .setTitle("Permissions required")
       .setMessage("This app needs these permissions to run, please accept")
